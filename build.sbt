@@ -5,7 +5,8 @@ logLevel := Level.Warn
 
 lazy val commonSettings = Seq(
   organization := "com.pyxius.mytools",
-  version <<= name {n => n + "-1.0"},
+  //version <<= name {n => n + "-1.0"},
+  version := "1.0",
   scalaVersion := "2.11.7"
 )
 
