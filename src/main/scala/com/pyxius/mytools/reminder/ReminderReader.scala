@@ -3,7 +3,8 @@ package com.pyxius.mytools.reminder
 import java.io.File
 import java.util.Date
 
-import com.pyxius.mytools.mail.{EmailSender, Mail}
+import com.pyxius.mytools.mail.EmailSender
+import com.pyxius.mytools.mail.{EmailSender, NotifyMail}
 
 import scala.io.Source
 
@@ -23,7 +24,7 @@ object ReminderReader {
     for (line <- Source.fromFile(file).getLines()) {
       val reminder = Reminder.parse(line)
       if (isValid(reminder)) {
-        EmailSender.sendEMail(Mail(reminder.subject, reminder.message))
+        EmailSender.sendEMail(NotifyMail(reminder.subject, reminder.message))
       }
     }
   }

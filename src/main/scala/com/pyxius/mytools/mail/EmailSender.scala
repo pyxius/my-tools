@@ -3,18 +3,20 @@ package com.pyxius.mytools.mail
 import java.util.Properties
 import javax.mail.{Authenticator, PasswordAuthentication, Session}
 
-case class Mail(from: String, to: String, subject: String, body: String)
+import org.apache.commons.mail.SimpleEmail
 
-object Mail {
-  def apply(subject: String, body: String): Mail =
-    new Mail(from = "admin@pyxius.com", to = "satyaprakash23@gmail.com", subject, body)
+case class NotifyMail(from: String, to: String, subject: String, body: String)
+
+object NotifyMail {
+  def apply(subject: String, body: String): NotifyMail =
+    new NotifyMail(from = "admin@pyxius.com", to = "satyaprakash23@gmail.com", subject, body)
 }
 
 
 object EmailSender {
 
-  def sendEMail(mail: Mail): Unit = {
-    import org.apache.commons.mail._
+  def sendEMail(notifyMail: NotifyMail) = {
+    import org.apache.commons._
 
     val properties = new Properties()
     properties.put("mail.smtp.host", "smtp.gmail.com")
@@ -30,10 +32,10 @@ object EmailSender {
 
     val email = new SimpleEmail()
     email.setMailSession(session)
-    email.addTo(mail.to)
-    email.setFrom(mail.from)
-    email.setSubject(mail.subject)
-    email.setMsg(mail.body)
+    email.addTo(notifyMail.to)
+    email.setFrom(notifyMail.from)
+    email.setSubject(notifyMail.subject)
+    email.setMsg(notifyMail.body)
     email.send()
   }
 }
