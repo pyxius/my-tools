@@ -2,11 +2,13 @@
 // for debugging sbt problems change log level to DEBUG
 logLevel := Level.Warn
 
+
 lazy val commonSettings = Seq(
   name := "my-tools",
   organization := "com.pyxius",
-  version := "1.0",
-  scalaVersion := "2.11.7"
+  version := "1.0-SNAPSHOT",
+  scalaVersion := "2.11.7",
+  publishTo := Some("default" at "http://localhost:8081/nexus/content/repositories/pyxius-snapshots")
 )
 
 lazy val root = (project in file(".")).
@@ -19,6 +21,7 @@ lazy val root = (project in file(".")).
       "Local Ivy Repository" at "file://c:\\Users/satyam/.ivy2/cache"
     )
   )
+
 
 
 
